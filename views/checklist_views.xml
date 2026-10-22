@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view -->
+    <record id="view_ciacocam_checklist_plantilla_form" model="ir.ui.view">
+        <field name="name">ciacocam.checklist.plantilla.form</field>
+        <field name="model">ciacocam.checklist.plantilla</field>
+        <field name="arch" type="xml">
+            <form string="Plantilla de Checklist">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="descripcion"/>
+                    </group>
+                    <field name="linea_ids">
+                        <list editable="bottom">
+                            <field name="secuencia" widget="handle"/>
+                            <field name="name"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="view_ciacocam_checklist_plantilla_list" model="ir.ui.view">
+        <field name="name">ciacocam.checklist.plantilla.list</field>
+        <field name="model">ciacocam.checklist.plantilla</field>
+        <field name="arch" type="xml">
+            <list string="Plantillas de Checklist">
+                <field name="name"/>
+                <field name="descripcion"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="view_ciacocam_checklist_plantilla_search" model="ir.ui.view">
+        <field name="name">ciacocam.checklist.plantilla.search</field>
+        <field name="model">ciacocam.checklist.plantilla</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Plantilla">
+                <field name="name"/>
+                <field name="descripcion"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ciacocam_checklist" model="ir.actions.act_window">
+        <field name="name">Checklists</field>
+        <field name="res_model">ciacocam.checklist.plantilla</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

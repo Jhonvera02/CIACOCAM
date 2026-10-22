@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_ciacocam_inspeccion" model="ir.sequence">
+        <field name="name">Inspección CIACOCAM</field>
+        <field name="code">ciacocam.inspeccion</field>
+        <field name="prefix">INS/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="seq_ciacocam_incidencia" model="ir.sequence">
+        <field name="name">Incidencia CIACOCAM</field>
+        <field name="code">ciacocam.incidencia</field>
+        <field name="prefix">INC/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="seq_ciacocam_mantenimiento" model="ir.sequence">
+        <field name="name">Mantenimiento CIACOCAM</field>
+        <field name="code">ciacocam.mantenimiento</field>
+        <field name="prefix">MNT/</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>

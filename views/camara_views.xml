@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view -->
+    <record id="view_ciacocam_camara_form" model="ir.ui.view">
+        <field name="name">ciacocam.camara.form</field>
+        <field name="model">ciacocam.camara</field>
+        <field name="arch" type="xml">
+            <form string="Cámara">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="marca"/>
+                            <field name="modelo"/>
+                            <field name="numero_serie"/>
+                        </group>
+                        <group>
+                            <field name="tipo"/>
+                            <field name="resolucion"/>
+                            <field name="ip_address"/>
+                        </group>
+                        <group>
+                            <field name="dvr_id"/>
+                            <field name="canal"/>
+                            <field name="ubicacion_id"/>
+                            <field name="zona"/>
+                            <field name="fecha_instalacion"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notas">
+                            <field name="notas"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="view_ciacocam_camara_list" model="ir.ui.view">
+        <field name="name">ciacocam.camara.list</field>
+        <field name="model">ciacocam.camara</field>
+        <field name="arch" type="xml">
+            <list string="Cámaras">
+                <field name="name"/>
+                <field name="tipo"/>
+                <field name="resolucion"/>
+                <field name="dvr_id"/>
+                <field name="ubicacion_id"/>
+                <field name="zona"/>
+                <field name="state" decoration-danger="state == 'fuera_servicio'" decoration-warning="state == 'con_fallas'" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="view_ciacocam_camara_search" model="ir.ui.view">
+        <field name="name">ciacocam.camara.search</field>
+        <field name="model">ciacocam.camara</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Cámara">
+                <field name="name"/>
+                <field name="tipo"/>
+                <field name="state"/>
+                <field name="ubicacion_id"/>
+                <field name="dvr_id"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Ubicación" name="group_ubicacion" context="{'group_by':'ubicacion_id'}"/>
+                    <filter string="DVR" name="group_dvr" context="{'group_by':'dvr_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ciacocam_camara" model="ir.actions.act_window">
+        <field name="name">Cámaras</field>
+        <field name="res_model">ciacocam.camara</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view -->
+    <record id="view_ciacocam_ubicacion_form" model="ir.ui.view">
+        <field name="name">ciacocam.ubicacion.form</field>
+        <field name="model">ciacocam.ubicacion</field>
+        <field name="arch" type="xml">
+            <form string="Ubicación">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="direccion"/>
+                        <field name="ciudad"/>
+                        <field name="responsable_id"/>
+                    </group>
+                    <notebook>
+                        <page string="DVRs">
+                            <field name="dvr_ids"/>
+                        </page>
+                        <page string="Cámaras">
+                            <field name="camara_ids"/>
+                        </page>
+                        <page string="Notas">
+                            <field name="notas"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="view_ciacocam_ubicacion_list" model="ir.ui.view">
+        <field name="name">ciacocam.ubicacion.list</field>
+        <field name="model">ciacocam.ubicacion</field>
+        <field name="arch" type="xml">
+            <list string="Ubicaciones">
+                <field name="name"/>
+                <field name="ciudad"/>
+                <field name="responsable_id"/>
+                <field name="dvr_count"/>
+                <field name="camara_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="view_ciacocam_ubicacion_search" model="ir.ui.view">
+        <field name="name">ciacocam.ubicacion.search</field>
+        <field name="model">ciacocam.ubicacion</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Ubicación">
+                <field name="name"/>
+                <field name="ciudad"/>
+                <field name="responsable_id"/>
+                <filter string="Por Ciudad" name="by_ciudad" context="{'group_by':'ciudad'}"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Responsable" name="group_responsable" context="{'group_by':'responsable_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ciacocam_ubicacion" model="ir.actions.act_window">
+        <field name="name">Ubicaciones</field>
+        <field name="res_model">ciacocam.ubicacion</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

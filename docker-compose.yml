@@ -1,0 +1,39 @@
+
+services:
+  # Base de datos PostgreSQL
+  db:
+    image: postgres:16
+    container_name: ciacocam_db
+    environment:
+      POSTGRES_DB: odoo
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  # Servidor Odoo 19
+  odoo:
+    image: odoo:19
+    container_name: ciacocam_odoo
+    depends_on:
+      - db
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo123
+    ports:
+      - "8069:8069"
+    volumes:
+      # Montar el módulo CIACOCAM como addon extra
+      - ./:/mnt/extra-addons/CIACOCAM
+      - odoo_data:/var/lib/odoo
+    command: >
+      -- --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  odoo_data:

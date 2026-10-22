@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view -->
+    <record id="view_ciacocam_historial_form" model="ir.ui.view">
+        <field name="name">ciacocam.historial.form</field>
+        <field name="model">ciacocam.historial</field>
+        <field name="arch" type="xml">
+            <form string="Historial">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="fecha"/>
+                            <field name="tipo_evento"/>
+                            <field name="usuario_id"/>
+                        </group>
+                        <group>
+                            <field name="ubicacion_id"/>
+                            <field name="camara_id"/>
+                            <field name="dvr_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="detalle"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="view_ciacocam_historial_list" model="ir.ui.view">
+        <field name="name">ciacocam.historial.list</field>
+        <field name="model">ciacocam.historial</field>
+        <field name="arch" type="xml">
+            <list string="Historial" default_order="fecha desc">
+                <field name="fecha"/>
+                <field name="name"/>
+                <field name="tipo_evento"/>
+                <field name="usuario_id"/>
+                <field name="ubicacion_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="view_ciacocam_historial_search" model="ir.ui.view">
+        <field name="name">ciacocam.historial.search</field>
+        <field name="model">ciacocam.historial</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Historial">
+                <field name="name"/>
+                <field name="tipo_evento"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Ubicación" name="group_ubicacion" context="{'group_by':'ubicacion_id'}"/>
+                    <filter string="Usuario" name="group_usuario" context="{'group_by':'usuario_id'}"/>
+                    <filter string="Fecha" name="group_fecha" context="{'group_by':'fecha:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ciacocam_historial" model="ir.actions.act_window">
+        <field name="name">Historial</field>
+        <field name="res_model">ciacocam.historial</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

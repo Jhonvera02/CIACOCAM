@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_ciacocam_root"
+              name="CIACOCAM"
+              web_icon="CIACOCAM,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Dashboard -->
+    <menuitem id="menu_ciacocam_dashboard"
+              name="Dashboard"
+              parent="menu_ciacocam_root"
+              action="action_ciacocam_dashboard"
+              sequence="10"/>
+
+    <!-- Operaciones -->
+    <menuitem id="menu_ciacocam_operaciones"
+              name="Operaciones"
+              parent="menu_ciacocam_root"
+              sequence="20"/>
+
+    <!-- Operaciones submenus -->
+    <menuitem id="menu_ciacocam_inspecciones"
+              name="Inspecciones"
+              parent="menu_ciacocam_operaciones"
+              action="action_ciacocam_inspeccion"
+              sequence="10"/>
+              
+    <menuitem id="menu_ciacocam_incidencias"
+              name="Incidencias"
+              parent="menu_ciacocam_operaciones"
+              action="action_ciacocam_incidencia"
+              sequence="20"/>
+              
+    <menuitem id="menu_ciacocam_mantenimientos"
+              name="Mantenimientos"
+              parent="menu_ciacocam_operaciones"
+              action="action_ciacocam_mantenimiento"
+              sequence="30"/>
+
+    <!-- Configuración -->
+    <menuitem id="menu_ciacocam_configuracion"
+              name="Configuración"
+              parent="menu_ciacocam_root"
+              sequence="30"/>
+
+    <!-- Configuración submenus -->
+    <menuitem id="menu_ciacocam_camaras"
+              name="Cámaras"
+              parent="menu_ciacocam_configuracion"
+              action="action_ciacocam_camara"
+              sequence="10"/>
+              
+    <menuitem id="menu_ciacocam_dvrs"
+              name="DVRs"
+              parent="menu_ciacocam_configuracion"
+              action="action_ciacocam_dvr"
+              sequence="20"/>
+              
+    <menuitem id="menu_ciacocam_ubicaciones"
+              name="Ubicaciones"
+              parent="menu_ciacocam_configuracion"
+              action="action_ciacocam_ubicacion"
+              sequence="30"/>
+              
+    <menuitem id="menu_ciacocam_checklists"
+              name="Checklists"
+              parent="menu_ciacocam_configuracion"
+              action="action_ciacocam_checklist"
+              sequence="40"/>
+              
+    <menuitem id="menu_ciacocam_historial"
+              name="Historial"
+              parent="menu_ciacocam_configuracion"
+              action="action_ciacocam_historial"
+              sequence="50"/>
+</odoo>

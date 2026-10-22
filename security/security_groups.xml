@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Module Category -->
+    <record id="module_category_ciacocam" model="ir.module.category">
+        <field name="name">CIACOCAM</field>
+        <field name="description">Sistema de Control Integral de Cámaras</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- User Group -->
+    <record id="group_ciacocam_user" model="res.groups">
+        <field name="name">Usuario</field>
+        <field name="category_id" ref="module_category_ciacocam"/>
+    </record>
+
+    <!-- Admin Group (inherits User) -->
+    <record id="group_ciacocam_admin" model="res.groups">
+        <field name="name">Administrador</field>
+        <field name="category_id" ref="module_category_ciacocam"/>
+        <field name="implied_ids" eval="[(4, ref('group_ciacocam_user'))]"/>
+    </record>
+</odoo>

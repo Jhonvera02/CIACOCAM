@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view -->
+    <record id="view_ciacocam_inspeccion_form" model="ir.ui.view">
+        <field name="name">ciacocam.inspeccion.form</field>
+        <field name="model">ciacocam.inspeccion</field>
+        <field name="arch" type="xml">
+            <form string="Inspección">
+                <header>
+                    <button name="action_iniciar" string="Iniciar" type="object" invisible="state != 'borrador'" class="oe_highlight"/>
+                    <button name="action_completar" string="Completar" type="object" invisible="state != 'en_proceso'" class="oe_highlight"/>
+                    <button name="action_cancelar" string="Cancelar" type="object" invisible="state in ('completada', 'cancelada')"/>
+                    <button name="action_borrador" string="Volver a Borrador" type="object" invisible="state != 'cancelada'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="fecha"/>
+                            <field name="inspector_id"/>
+                        </group>
+                        <group>
+                            <field name="ubicacion_id"/>
+                            <label for="checklist_id"/>
+                            <div class="o_row">
+                                <field name="checklist_id"/>
+                                <button name="action_cargar_checklist" string="Cargar Checklist" type="object" class="btn btn-secondary"/>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Resultados">
+                            <field name="resultado_ids">
+                                <list editable="bottom">
+                                    <field name="linea_id"/>
+                                    <field name="cumple"/>
+                                    <field name="observacion"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Incidencias">
+                            <field name="incidencia_ids"/>
+                        </page>
+                        <page string="Observaciones">
+                            <field name="observaciones"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="view_ciacocam_inspeccion_list" model="ir.ui.view">
+        <field name="name">ciacocam.inspeccion.list</field>
+        <field name="model">ciacocam.inspeccion</field>
+        <field name="arch" type="xml">
+            <list string="Inspecciones">
+                <field name="name"/>
+                <field name="fecha"/>
+                <field name="inspector_id"/>
+                <field name="ubicacion_id"/>
+                <field name="state" decoration-success="state == 'completada'" decoration-info="state == 'en_proceso'" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="view_ciacocam_inspeccion_search" model="ir.ui.view">
+        <field name="name">ciacocam.inspeccion.search</field>
+        <field name="model">ciacocam.inspeccion</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Inspección">
+                <field name="name"/>
+                <field name="state"/>
+                <field name="inspector_id"/>
+                <field name="ubicacion_id"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Inspector" name="group_inspector" context="{'group_by':'inspector_id'}"/>
+                    <filter string="Ubicación" name="group_ubicacion" context="{'group_by':'ubicacion_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ciacocam_inspeccion" model="ir.actions.act_window">
+        <field name="name">Inspecciones</field>
+        <field name="res_model">ciacocam.inspeccion</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

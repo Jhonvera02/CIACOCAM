@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view -->
+    <record id="view_ciacocam_incidencia_form" model="ir.ui.view">
+        <field name="name">ciacocam.incidencia.form</field>
+        <field name="model">ciacocam.incidencia</field>
+        <field name="arch" type="xml">
+            <form string="Incidencia">
+                <header>
+                    <button name="action_en_proceso" string="En Proceso" type="object" invisible="state != 'abierta'" class="oe_highlight"/>
+                    <button name="action_resolver" string="Resolver" type="object" invisible="state != 'en_proceso'" class="oe_highlight"/>
+                    <button name="action_cerrar" string="Cerrar" type="object" invisible="state != 'resuelta'" class="oe_highlight"/>
+                    <button name="action_reabrir" string="Reabrir" type="object" invisible="state not in ('resuelta', 'cerrada')"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="fecha_reporte"/>
+                            <field name="reportado_por_id"/>
+                            <field name="tipo"/>
+                        </group>
+                        <group>
+                            <field name="ubicacion_id"/>
+                            <field name="camara_id"/>
+                            <field name="dvr_id"/>
+                            <field name="inspeccion_id"/>
+                        </group>
+                        <group>
+                            <field name="prioridad"/>
+                            <field name="asignado_a_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="descripcion"/>
+                    </group>
+                    <notebook>
+                        <page string="Resolución">
+                            <group>
+                                <field name="fecha_resolucion"/>
+                                <field name="solucion"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="view_ciacocam_incidencia_list" model="ir.ui.view">
+        <field name="name">ciacocam.incidencia.list</field>
+        <field name="model">ciacocam.incidencia</field>
+        <field name="arch" type="xml">
+            <list string="Incidencias">
+                <field name="name"/>
+                <field name="fecha_reporte"/>
+                <field name="tipo"/>
+                <field name="prioridad"/>
+                <field name="ubicacion_id"/>
+                <field name="asignado_a_id"/>
+                <field name="state" decoration-danger="prioridad == '3'" decoration-warning="prioridad == '2'" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="view_ciacocam_incidencia_search" model="ir.ui.view">
+        <field name="name">ciacocam.incidencia.search</field>
+        <field name="model">ciacocam.incidencia</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Incidencia">
+                <field name="name"/>
+                <field name="state"/>
+                <field name="tipo"/>
+                <field name="prioridad"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Ubicación" name="group_ubicacion" context="{'group_by':'ubicacion_id'}"/>
+                    <filter string="Asignado a" name="group_asignado" context="{'group_by':'asignado_a_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ciacocam_incidencia" model="ir.actions.act_window">
+        <field name="name">Incidencias</field>
+        <field name="res_model">ciacocam.incidencia</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
